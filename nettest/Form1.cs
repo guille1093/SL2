@@ -32,8 +32,10 @@ namespace nettest
             Auto.Add(new Autos() { Patente = "STU901", Marca = "Kia", Modelo = "Ceed", Anio = 2015 });
             Auto.Add(new Autos() { Patente = "ABX713", Marca = "Ford", Modelo = "Mondeo", Anio = 2022 });
             Auto.Add(new Autos() { Patente = "MTX820", Marca = "Audi", Modelo = "Q4", Anio = 2017 });
-            BindingSource source = new BindingSource();
-            source.DataSource = Auto;
+            var source = new BindingSource
+            {
+                DataSource = Auto
+            };
             DgvAutos.DataSource = source;
         }
         
@@ -48,7 +50,7 @@ namespace nettest
                 Anio = Convert.ToInt32(txtBAnio.Text)
             });
         }
-        private void limpiarCampos()
+        private void LimpiarCampos()
         {
             txtBPatente.Clear();
             txtBMarca.Clear();
@@ -56,7 +58,7 @@ namespace nettest
             txtBAnio.Clear();
         }
 
-        private void btAgregar_Click(object sender, EventArgs e)
+        private void BtAgregarClick(object sender, EventArgs e)
         {
             //Verificamos que los textboxs no esteen vacios y mostramos una advertencia si lo estan
             if (txtBPatente.Text == "" || txtBMarca.Text == "" || txtBModelo.Text == "" || txtBAnio.Text == "")
@@ -66,18 +68,41 @@ namespace nettest
                     MessageBoxButtons.OK, 
                     MessageBoxIcon.Warning);
             }
+            else if (txtBPatente.Text.Length != 6)
+            {
+                MessageBox.Show("La patente debe tener 6 caracteres",
+                    "Advertencia",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+            }
+            else if (txtBAnio.Text.Length != 4)
+            {
+                MessageBox.Show("El año debe tener 4 caracteres",
+                    "Advertencia",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+            }
+            else if (txtBAnio.Text.Any(char.IsLetter))
+            {
+                MessageBox.Show("El año debe ser un numero",
+                    "Advertencia",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+            }
             else
             {
-                //Agregamos un Auto al array creado
+                //Agregamos un nuevo auto a la lista
                 AgregarAutos();
-                //Limpiamos los campos
-                limpiarCampos();
+                //Limpiamos los textboxs
+                LimpiarCampos();
             }
             //Populamos la tableview con los datos de la lista
-            BindingSource source = new BindingSource();
-            source.DataSource = Auto;
+            var source = new BindingSource
+            {
+                DataSource = Auto
+            };
             DgvAutos.DataSource = source;
-            limpiarCampos();
+            LimpiarCampos();
         }
 
         private void dgvAutos_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -90,6 +115,7 @@ namespace nettest
             txtBPatente.Text = DgvAutos.Rows[n].Cells[0].Value.ToString();
             txtBMarca.Text = DgvAutos.Rows[n].Cells[1].Value.ToString();
             txtBModelo.Text = DgvAutos.Rows[n].Cells[2].Value.ToString();
+            txtBAnio.Text = DgvAutos.Rows[n].Cells[3].Value.ToString();
         }
 
         private void btEliminar_Click(object sender, EventArgs e)
@@ -101,7 +127,7 @@ namespace nettest
             Auto.RemoveAt(n);
             
             //Limpiamos los TextBox
-            limpiarCampos();
+            LimpiarCampos();
 
         }
 
@@ -119,10 +145,7 @@ namespace nettest
         //Evento por defecto del Formulario, inicializamos propiedades y funciones
         private void Form1_Load(object sender, EventArgs e)
         {
-            //DgvAutos.AutoGenerateColumns = true;
-            //AgregarAutos();
-            // DgvAutos.DataSource = Auto;
-            //Rellenar();
+            
         }
 
         private void btnModeloPruebas_Click(object sender, EventArgs e)
