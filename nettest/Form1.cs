@@ -34,14 +34,23 @@ namespace nettest
         {
             if (RBPatente.Checked)
             {
-                foreach (DataGridViewRow row in DgvAutos.Rows)
+                try
                 {
-                    if (!row.Cells[0].Value.ToString().Contains(txtBPatente.Text))
+                    foreach (DataGridViewRow row in DgvAutos.Rows)
                     {
-                        row.Visible = false;
+                        if (!row.Cells[0].Value.ToString().Contains(txtBPatente.Text))
+                        {
+                            row.Visible = false;
+                        }
                     }
                 }
+                catch (Exception)
+                {
+                    MessageBox.Show("No se encontraron coincidencias", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
             }
+
             if (RBMarca.Checked)
             {
                 foreach (DataGridViewRow row in DgvAutos.Rows)
@@ -114,8 +123,8 @@ namespace nettest
             Auto.Add(new Autos() { Patente = "JKL654", Marca = "Acura", Modelo = "NSX", Anio = 1999 });
             Auto.Add(new Autos() { Patente = "KLM321", Marca = "Audi", Modelo = "Q3", Anio = 2020 });
             Auto.Add(new Autos() { Patente = "NOP654", Marca = "Nissan", Modelo = "R32", Anio = 1998 });
-            
             ActualizarDgv();
+            btnModeloPruebas.Enabled = false;
         }
 
         //Definimos una funcion para agregar autos a la lista
