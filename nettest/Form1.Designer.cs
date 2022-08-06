@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtBPatente = new System.Windows.Forms.TextBox();
             this.txtBMarca = new System.Windows.Forms.TextBox();
             this.txtBModelo = new System.Windows.Forms.TextBox();
@@ -42,7 +42,6 @@
             this.txtBAnio = new System.Windows.Forms.TextBox();
             this.btnModeloPruebas = new System.Windows.Forms.Button();
             this.BtnLimpiar = new System.Windows.Forms.Button();
-            this.BtnMostrar = new System.Windows.Forms.Button();
             this.BtnBuscar = new System.Windows.Forms.Button();
             this.GpBoxElementosDeBusqueda = new System.Windows.Forms.GroupBox();
             this.RBAnio = new System.Windows.Forms.RadioButton();
@@ -109,28 +108,28 @@
             this.DgvAutos.BackgroundColor = System.Drawing.SystemColors.Control;
             this.DgvAutos.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DgvAutos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgvAutos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvAutos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DgvAutos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvAutos.Location = new System.Drawing.Point(220, 9);
+            this.DgvAutos.Location = new System.Drawing.Point(202, 9);
             this.DgvAutos.MultiSelect = false;
             this.DgvAutos.Name = "DgvAutos";
             this.DgvAutos.RowHeadersVisible = false;
             this.DgvAutos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DgvAutos.Size = new System.Drawing.Size(482, 347);
+            this.DgvAutos.Size = new System.Drawing.Size(500, 322);
             this.DgvAutos.TabIndex = 8;
             this.DgvAutos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAutos_CellClick);
             this.DgvAutos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvAutos_CellContentClick);
             // 
             // btAgregar
             // 
-            this.btAgregar.Location = new System.Drawing.Point(10, 271);
+            this.btAgregar.Location = new System.Drawing.Point(9, 251);
             this.btAgregar.Name = "btAgregar";
             this.btAgregar.Size = new System.Drawing.Size(86, 23);
             this.btAgregar.TabIndex = 9;
@@ -140,7 +139,7 @@
             // 
             // btEliminar
             // 
-            this.btEliminar.Location = new System.Drawing.Point(109, 271);
+            this.btEliminar.Location = new System.Drawing.Point(108, 251);
             this.btEliminar.Name = "btEliminar";
             this.btEliminar.Size = new System.Drawing.Size(80, 23);
             this.btEliminar.TabIndex = 10;
@@ -168,7 +167,7 @@
             // 
             // btnModeloPruebas
             // 
-            this.btnModeloPruebas.Location = new System.Drawing.Point(10, 329);
+            this.btnModeloPruebas.Location = new System.Drawing.Point(10, 309);
             this.btnModeloPruebas.Name = "btnModeloPruebas";
             this.btnModeloPruebas.Size = new System.Drawing.Size(179, 23);
             this.btnModeloPruebas.TabIndex = 13;
@@ -178,7 +177,7 @@
             // 
             // BtnLimpiar
             // 
-            this.BtnLimpiar.Location = new System.Drawing.Point(10, 300);
+            this.BtnLimpiar.Location = new System.Drawing.Point(10, 280);
             this.BtnLimpiar.Name = "BtnLimpiar";
             this.BtnLimpiar.Size = new System.Drawing.Size(179, 23);
             this.BtnLimpiar.TabIndex = 14;
@@ -186,21 +185,11 @@
             this.BtnLimpiar.UseVisualStyleBackColor = true;
             this.BtnLimpiar.Click += new System.EventHandler(this.BtnLimpiar_Click);
             // 
-            // BtnMostrar
-            // 
-            this.BtnMostrar.Location = new System.Drawing.Point(104, 109);
-            this.BtnMostrar.Name = "BtnMostrar";
-            this.BtnMostrar.Size = new System.Drawing.Size(80, 23);
-            this.BtnMostrar.TabIndex = 15;
-            this.BtnMostrar.Text = "Mostrar todos";
-            this.BtnMostrar.UseVisualStyleBackColor = true;
-            this.BtnMostrar.Click += new System.EventHandler(this.BtnOcultar_Click);
-            // 
             // BtnBuscar
             // 
-            this.BtnBuscar.Location = new System.Drawing.Point(5, 109);
+            this.BtnBuscar.Location = new System.Drawing.Point(103, 86);
             this.BtnBuscar.Name = "BtnBuscar";
-            this.BtnBuscar.Size = new System.Drawing.Size(86, 23);
+            this.BtnBuscar.Size = new System.Drawing.Size(80, 23);
             this.BtnBuscar.TabIndex = 16;
             this.BtnBuscar.Text = "Buscar";
             this.BtnBuscar.UseVisualStyleBackColor = true;
@@ -209,17 +198,17 @@
             // GpBoxElementosDeBusqueda
             // 
             this.GpBoxElementosDeBusqueda.Controls.Add(this.RBAnio);
-            this.GpBoxElementosDeBusqueda.Controls.Add(this.BtnMostrar);
             this.GpBoxElementosDeBusqueda.Controls.Add(this.RBModelo);
             this.GpBoxElementosDeBusqueda.Controls.Add(this.RBMarca);
             this.GpBoxElementosDeBusqueda.Controls.Add(this.RBPatente);
             this.GpBoxElementosDeBusqueda.Controls.Add(this.BtnBuscar);
             this.GpBoxElementosDeBusqueda.Location = new System.Drawing.Point(5, 130);
             this.GpBoxElementosDeBusqueda.Name = "GpBoxElementosDeBusqueda";
-            this.GpBoxElementosDeBusqueda.Size = new System.Drawing.Size(193, 137);
+            this.GpBoxElementosDeBusqueda.Size = new System.Drawing.Size(191, 115);
             this.GpBoxElementosDeBusqueda.TabIndex = 17;
             this.GpBoxElementosDeBusqueda.TabStop = false;
             this.GpBoxElementosDeBusqueda.Text = "Seleccione el campo a buscar";
+            this.GpBoxElementosDeBusqueda.Enter += new System.EventHandler(this.GpBoxElementosDeBusqueda_Enter);
             // 
             // RBAnio
             // 
@@ -272,7 +261,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(714, 368);
+            this.ClientSize = new System.Drawing.Size(714, 343);
             this.Controls.Add(this.GpBoxElementosDeBusqueda);
             this.Controls.Add(this.BtnLimpiar);
             this.Controls.Add(this.btnModeloPruebas);
@@ -312,7 +301,6 @@
         private System.Windows.Forms.TextBox txtBAnio;
         private System.Windows.Forms.Button btnModeloPruebas;
         private System.Windows.Forms.Button BtnLimpiar;
-        private System.Windows.Forms.Button BtnMostrar;
         private System.Windows.Forms.Button BtnBuscar;
         private System.Windows.Forms.GroupBox GpBoxElementosDeBusqueda;
         private System.Windows.Forms.RadioButton RBMarca;

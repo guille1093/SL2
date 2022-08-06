@@ -42,7 +42,7 @@ namespace nettest
                     }
                 }
             }
-            else if (RBMarca.Checked)
+            if (RBMarca.Checked)
             {
                 foreach (DataGridViewRow row in DgvAutos.Rows)
                 {
@@ -52,7 +52,7 @@ namespace nettest
                     }
                 }
             }
-            else if (RBModelo.Checked)
+            if (RBModelo.Checked)
             {
                 foreach (DataGridViewRow row in DgvAutos.Rows)
                 {
@@ -62,7 +62,7 @@ namespace nettest
                     }
                 }
             }
-            else if (RBAnio.Checked)
+            if (RBAnio.Checked)
             {
                 foreach (DataGridViewRow row in DgvAutos.Rows)
                 {
@@ -79,10 +79,18 @@ namespace nettest
         //funcion lambda boolean que retorna true si ya existe una patente en la lista con el mismo valor que el del textbox
         private bool ExistePatente()
         {
-            return Auto.Any(auto => auto.Patente == txtBPatente.Text);
+            if (Auto.Exists(x => x.Patente == txtBPatente.Text))
+            {
+                MessageBox.Show("La patente ya existe", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
-            //funcion que rellena la lista con 9 autos de prueba
+        //funcion que rellena la lista con 9 autos de prueba
         private void Rellenar()
         {
             Auto.Add(new Autos() { Patente = "ABC123", Marca = "Ford", Modelo = "Focus", Anio = 2021 });
@@ -120,6 +128,8 @@ namespace nettest
                 Modelo = txtBModelo.Text,
                 Anio = Convert.ToInt32(txtBAnio.Text)
             });
+            //Mensaje de confirmacion de agregado de autos
+            MessageBox.Show(txtBMarca.Text+" "+txtBModelo.Text+ " agregado correctamente", "Operacion exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void LimpiarCampos()
@@ -242,6 +252,7 @@ namespace nettest
         private void BtnLimpiar_Click(object sender, EventArgs e)
         {
             LimpiarCampos();
+            MostrarFilas();
         }
 
         private void BtnOcultar_Click(object sender, EventArgs e)
@@ -264,5 +275,9 @@ namespace nettest
 
         }
 
+        private void GpBoxElementosDeBusqueda_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
