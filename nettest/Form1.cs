@@ -16,43 +16,27 @@ namespace nettest
         {
             InitializeComponent();
         }
-        //Definimos un struct Autos con los campos marca, modelo y patente
-        //Solo para probar xd... Se termina usando una lista 
-        //// control+k+c/u comment
-        //public struct Autos
-        //{
-        //    public string marca;
-        //    public string modelo;
-        //    public string patente;
-        //    //add setters
-        //    public void SetAuto(string marca, string modelo, string patente)
-        //    {
-        //        this.marca = marca;
-        //        this.modelo = modelo;
-        //        this.patente = patente;
-        //    }
-
-        //}
-
-        ////Definimos un array del struct Autos
-        ////que odioso hacerlo asi
-        //private Autos[] Auto = { new Autos(), new Autos(), new Autos(), new Autos(), new Autos() };
-        ////Agregamos un Auto al array creado
-        //public void AgregarAutos() 
-        //{ 
-        //    Auto[0].SetAuto("ABC123", "Ford", "2021");
-        //    Auto[1].SetAuto("ABC123", "Chevrolet", "2020");
-        //    Auto[2].SetAuto("ABC123", "Dodge", "1972");
-        //    Auto[3].SetAuto("ABC123", "Audi", "2022");
-        //    Auto[4].SetAuto("ABC123", "Fiat", "1999");
-        //}
+        
         //Definimos una Lista de Autos
         public List<Autos> Auto = new List<Autos>();
         
-        //Definimos una funcion para agregar autos a la lista teniendo en cuenta la clase Autos
-        public void AgregarAutos()
+        //funcion que rellena la lista con 9 autos de prueba
+        private void Rellenar()
         {
-            //Auto.Add(new Autos() { Patente = "ABC123", Marca = "Ford", Modelo = "Focus", Anio = 2021 });
+            Auto.Add(new Autos() { Patente = "ABC123", Marca = "Ford", Modelo = "Focus", Anio = 2021 });
+            Auto.Add(new Autos() { Patente = "DEF456", Marca = "Chevrolet", Modelo = "Cruze", Anio = 2020 });
+            Auto.Add(new Autos() { Patente = "GHI789", Marca = "Honda", Modelo = "Civic", Anio = 2019 });
+            Auto.Add(new Autos() { Patente = "JKL012", Marca = "Toyota", Modelo = "Corolla", Anio = 2018 });
+            Auto.Add(new Autos() { Patente = "MNO345", Marca = "Nissan", Modelo = "Sentra", Anio = 2017 });
+            Auto.Add(new Autos() { Patente = "PQR678", Marca = "Hyundai", Modelo = "Sonata", Anio = 2016 });
+            Auto.Add(new Autos() { Patente = "STU901", Marca = "Kia", Modelo = "Ceed", Anio = 2015 });
+            Auto.Add(new Autos() { Patente = "ABX713", Marca = "Ford", Modelo = "Mondeo", Anio = 2022 });
+            Auto.Add(new Autos() { Patente = "MTX820", Marca = "Audi", Modelo = "Q4", Anio = 2017 });
+        }
+        
+        //Definimos una funcion para agregar autos a la lista teniendo en cuenta la clase Autos
+        private void AgregarAutos()
+        {
             Auto.Add(new Autos
             {
                 Patente = txtBPatente.Text,
@@ -74,7 +58,10 @@ namespace nettest
             //Verificamos que los textboxs no esteen vacios y mostramos una advertencia si lo estan
             if (txtBPatente.Text == "" || txtBMarca.Text == "" || txtBModelo.Text == "" || txtBAnio.Text == "")
             {
-                MessageBox.Show("Por favor complete todos los campos");
+                MessageBox.Show("Por favor complete todos los campos",
+                    "Advertencia", 
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Warning);
             }
             else
             {
@@ -83,7 +70,6 @@ namespace nettest
                 //Limpiamos los campos
                 limpiarCampos();
             }
-
             //Populamos la tableview con los datos de la lista
             BindingSource source = new BindingSource();
             source.DataSource = Auto;
@@ -127,12 +113,13 @@ namespace nettest
         }
 
 
-        //Evento por defecto del Formulario, inicializamos la lista de autos
+        //Evento por defecto del Formulario, inicializamos propiedades y funciones
         private void Form1_Load(object sender, EventArgs e)
         {
             //DgvAutos.AutoGenerateColumns = true;
             //AgregarAutos();
-           // DgvAutos.DataSource = Auto;
+            // DgvAutos.DataSource = Auto;
+            Rellenar();
         }
     }
 }
