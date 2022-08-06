@@ -17,8 +17,25 @@ namespace nettest
             InitializeComponent();
         }
 
+        //Evento por defecto del Formulario, inicializamos propiedades y funciones
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+        }
+
         //Definimos una Lista de Autos
         public List<Autos> Auto = new List<Autos>();
+
+        //Definimos como DataSource del TableGridView la Lista de Autos
+        private void ActualizarDgv()
+        {
+            var source = new BindingSource
+            {
+                DataSource = Auto
+            };
+            DgvAutos.DataSource = source;
+        }
 
         //Funcion que hace visible todas las filas del DataGridView
         private void MostrarFilas()
@@ -90,7 +107,10 @@ namespace nettest
         {
             if (Auto.Exists(x => x.Patente == txtBPatente.Text))
             {
-                MessageBox.Show("La patente ya existe", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("La patente ya existe",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return true;
             }
             else
@@ -99,7 +119,7 @@ namespace nettest
             }
         }
 
-        //funcion que rellena la lista con 9 autos de prueba
+        //funcion que rellena la lista con autos de prueba
         private void Rellenar()
         {
             Auto.Add(new Autos() { Patente = "ABC123", Marca = "Ford", Modelo = "Focus", Anio = 2021 });
@@ -124,6 +144,7 @@ namespace nettest
             Auto.Add(new Autos() { Patente = "KLM321", Marca = "Audi", Modelo = "Q3", Anio = 2020 });
             Auto.Add(new Autos() { Patente = "NOP654", Marca = "Nissan", Modelo = "R32", Anio = 1998 });
             ActualizarDgv();
+            DgvAutos.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             btnModeloPruebas.Enabled = false;
         }
 
@@ -138,7 +159,10 @@ namespace nettest
                 Anio = Convert.ToInt32(txtBAnio.Text)
             });
             //Mensaje de confirmacion de agregado de autos
-            MessageBox.Show(txtBMarca.Text+" "+txtBModelo.Text+ " agregado correctamente", "Operacion exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(txtBMarca.Text+" "+txtBModelo.Text+ " agregado correctamente",
+                "Operacion exitosa",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
         }
 
         private void LimpiarCampos()
@@ -148,16 +172,6 @@ namespace nettest
             txtBModelo.Clear();
             txtBAnio.Clear();
         }
-
-        private void ActualizarDgv()
-        {
-            var source = new BindingSource
-            {
-                DataSource = Auto
-            };
-            DgvAutos.DataSource = source;
-        }
-
 
         private bool ValidarCampos()
         {
@@ -179,7 +193,7 @@ namespace nettest
             }
             if (txtBAnio.Text.Length != 4)
             {
-                MessageBox.Show("El año debe tener 4 caracteres",
+                MessageBox.Show("El año debe tener 4 digitos",
                     "Advertencia",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
@@ -219,14 +233,11 @@ namespace nettest
 
         private void btEliminar_Click(object sender, EventArgs e)
         {
-            //Eliminamos el elemento en el renglon seleccionado
             if (DgvAutos.CurrentRow == null) return; 
             int n = DgvAutos.CurrentRow.Index;
             if (n == -1) return;
             Auto.RemoveAt(n);
-            //Populamos la tableview con los datos actualizados
             ActualizarDgv();
-            //Limpiamos los TextBox
             LimpiarCampos();
 
         }
@@ -242,12 +253,6 @@ namespace nettest
         }
 
 
-        //Evento por defecto del Formulario, inicializamos propiedades y funciones
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            
-        }
-
         private void btnModeloPruebas_Click(object sender, EventArgs e)
         {
             Rellenar();
@@ -261,11 +266,6 @@ namespace nettest
         private void BtnLimpiar_Click(object sender, EventArgs e)
         {
             LimpiarCampos();
-            MostrarFilas();
-        }
-
-        private void BtnOcultar_Click(object sender, EventArgs e)
-        {
             MostrarFilas();
         }
 
