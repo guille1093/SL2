@@ -93,34 +93,24 @@ namespace nettest
 
         private void dgvAutos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            //Obtenemos la fila seleccionada
+            if (DgvAutos.CurrentRow == null) return;
             int n = DgvAutos.CurrentRow.Index;
             //Seteamos los valores de los Textbox con los valores de las columnas
-            try
-            {
-                if (n == -1) return;
-                txtBPatente.Text = DgvAutos.Rows[n].Cells[0].Value.ToString();
-                txtBMarca.Text = DgvAutos.Rows[n].Cells[1].Value.ToString();
-                txtBModelo.Text = DgvAutos.Rows[n].Cells[2].Value.ToString();
-            }
-            catch
-            {
-                return;
-            }
+            if (n == -1) return;
+            txtBPatente.Text = DgvAutos.Rows[n].Cells[0].Value.ToString();
+            txtBMarca.Text = DgvAutos.Rows[n].Cells[1].Value.ToString();
+            txtBModelo.Text = DgvAutos.Rows[n].Cells[2].Value.ToString();
         }
 
         private void btEliminar_Click(object sender, EventArgs e)
         {
             //Eliminamos el elemento en el renglon seleccionado
+            if (DgvAutos.CurrentRow == null) return; 
             int n = DgvAutos.CurrentRow.Index;
-            try
-            {
-                if (n == -1) return;
-                DgvAutos.Rows.RemoveAt(n);
-            }
-            catch
-            {
-                return;
-            }
+            if (n == -1) return;
+            Auto.RemoveAt(n);
+            
             //Limpiamos los TextBox
             limpiarCampos();
 
