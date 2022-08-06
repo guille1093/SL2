@@ -93,6 +93,7 @@
             // 
             // DgvAutos
             // 
+            this.DgvAutos.AllowUserToAddRows = false;
             this.DgvAutos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DgvAutos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DgvAutos.BackgroundColor = System.Drawing.SystemColors.Control;
@@ -101,6 +102,8 @@
             this.DgvAutos.Location = new System.Drawing.Point(274, 48);
             this.DgvAutos.MultiSelect = false;
             this.DgvAutos.Name = "DgvAutos";
+            this.DgvAutos.RowHeadersVisible = false;
+            this.DgvAutos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgvAutos.Size = new System.Drawing.Size(439, 293);
             this.DgvAutos.TabIndex = 8;
             this.DgvAutos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAutos_CellClick);

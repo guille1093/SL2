@@ -116,6 +116,7 @@ namespace nettest
             txtBMarca.Text = DgvAutos.Rows[n].Cells[1].Value.ToString();
             txtBModelo.Text = DgvAutos.Rows[n].Cells[2].Value.ToString();
             txtBAnio.Text = DgvAutos.Rows[n].Cells[3].Value.ToString();
+
         }
 
         private void btEliminar_Click(object sender, EventArgs e)
@@ -125,7 +126,13 @@ namespace nettest
             int n = DgvAutos.CurrentRow.Index;
             if (n == -1) return;
             Auto.RemoveAt(n);
-            
+            //Populamos la tableview con los datos actualizados
+            var source = new BindingSource
+            {
+                DataSource = Auto
+            };
+            DgvAutos.DataSource = source;
+            LimpiarCampos();
             //Limpiamos los TextBox
             LimpiarCampos();
 
