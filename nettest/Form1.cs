@@ -32,6 +32,9 @@ namespace nettest
             Auto.Add(new Autos() { Patente = "STU901", Marca = "Kia", Modelo = "Ceed", Anio = 2015 });
             Auto.Add(new Autos() { Patente = "ABX713", Marca = "Ford", Modelo = "Mondeo", Anio = 2022 });
             Auto.Add(new Autos() { Patente = "MTX820", Marca = "Audi", Modelo = "Q4", Anio = 2017 });
+            BindingSource source = new BindingSource();
+            source.DataSource = Auto;
+            DgvAutos.DataSource = source;
         }
         
         //Definimos una funcion para agregar autos a la lista teniendo en cuenta la clase Autos
@@ -119,6 +122,11 @@ namespace nettest
             //DgvAutos.AutoGenerateColumns = true;
             //AgregarAutos();
             // DgvAutos.DataSource = Auto;
+            //Rellenar();
+        }
+
+        private void btnModeloPruebas_Click(object sender, EventArgs e)
+        {
             Rellenar();
         }
     }

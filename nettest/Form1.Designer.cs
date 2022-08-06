@@ -39,6 +39,7 @@
             this.btEliminar = new System.Windows.Forms.Button();
             this.LbAnio = new System.Windows.Forms.Label();
             this.txtBAnio = new System.Windows.Forms.TextBox();
+            this.btnModeloPruebas = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DgvAutos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -100,7 +101,7 @@
             this.DgvAutos.Location = new System.Drawing.Point(274, 48);
             this.DgvAutos.MultiSelect = false;
             this.DgvAutos.Name = "DgvAutos";
-            this.DgvAutos.Size = new System.Drawing.Size(431, 261);
+            this.DgvAutos.Size = new System.Drawing.Size(439, 293);
             this.DgvAutos.TabIndex = 8;
             this.DgvAutos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAutos_CellClick);
             // 
@@ -142,11 +143,22 @@
             this.txtBAnio.TabIndex = 11;
             this.txtBAnio.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
+            // btnModeloPruebas
+            // 
+            this.btnModeloPruebas.Location = new System.Drawing.Point(566, 347);
+            this.btnModeloPruebas.Name = "btnModeloPruebas";
+            this.btnModeloPruebas.Size = new System.Drawing.Size(147, 23);
+            this.btnModeloPruebas.TabIndex = 13;
+            this.btnModeloPruebas.Text = "Cargar modelo de pruebas";
+            this.btnModeloPruebas.UseVisualStyleBackColor = true;
+            this.btnModeloPruebas.Click += new System.EventHandler(this.btnModeloPruebas_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(717, 321);
+            this.ClientSize = new System.Drawing.Size(725, 382);
+            this.Controls.Add(this.btnModeloPruebas);
             this.Controls.Add(this.LbAnio);
             this.Controls.Add(this.txtBAnio);
             this.Controls.Add(this.btEliminar);
@@ -179,6 +191,7 @@
         private System.Windows.Forms.Button btEliminar;
         private System.Windows.Forms.Label LbAnio;
         private System.Windows.Forms.TextBox txtBAnio;
+        private System.Windows.Forms.Button btnModeloPruebas;
     }
 }
 
