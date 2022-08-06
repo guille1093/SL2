@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtBPatente = new System.Windows.Forms.TextBox();
             this.txtBMarca = new System.Windows.Forms.TextBox();
             this.txtBModelo = new System.Windows.Forms.TextBox();
@@ -40,34 +41,35 @@
             this.LbAnio = new System.Windows.Forms.Label();
             this.txtBAnio = new System.Windows.Forms.TextBox();
             this.btnModeloPruebas = new System.Windows.Forms.Button();
+            this.BtnLimpiar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DgvAutos)).BeginInit();
             this.SuspendLayout();
             // 
             // txtBPatente
             // 
-            this.txtBPatente.Location = new System.Drawing.Point(149, 48);
+            this.txtBPatente.Location = new System.Drawing.Point(110, 6);
             this.txtBPatente.Name = "txtBPatente";
-            this.txtBPatente.Size = new System.Drawing.Size(100, 20);
+            this.txtBPatente.Size = new System.Drawing.Size(80, 20);
             this.txtBPatente.TabIndex = 2;
             // 
             // txtBMarca
             // 
-            this.txtBMarca.Location = new System.Drawing.Point(149, 74);
+            this.txtBMarca.Location = new System.Drawing.Point(110, 32);
             this.txtBMarca.Name = "txtBMarca";
-            this.txtBMarca.Size = new System.Drawing.Size(100, 20);
+            this.txtBMarca.Size = new System.Drawing.Size(80, 20);
             this.txtBMarca.TabIndex = 3;
             // 
             // txtBModelo
             // 
-            this.txtBModelo.Location = new System.Drawing.Point(149, 100);
+            this.txtBModelo.Location = new System.Drawing.Point(110, 58);
             this.txtBModelo.Name = "txtBModelo";
-            this.txtBModelo.Size = new System.Drawing.Size(100, 20);
+            this.txtBModelo.Size = new System.Drawing.Size(80, 20);
             this.txtBModelo.TabIndex = 4;
             // 
             // lblPatente
             // 
             this.lblPatente.AutoSize = true;
-            this.lblPatente.Location = new System.Drawing.Point(51, 51);
+            this.lblPatente.Location = new System.Drawing.Point(12, 9);
             this.lblPatente.Name = "lblPatente";
             this.lblPatente.Size = new System.Drawing.Size(92, 13);
             this.lblPatente.TabIndex = 5;
@@ -76,7 +78,7 @@
             // lblMarca
             // 
             this.lblMarca.AutoSize = true;
-            this.lblMarca.Location = new System.Drawing.Point(51, 77);
+            this.lblMarca.Location = new System.Drawing.Point(12, 35);
             this.lblMarca.Name = "lblMarca";
             this.lblMarca.Size = new System.Drawing.Size(85, 13);
             this.lblMarca.TabIndex = 6;
@@ -85,7 +87,7 @@
             // lblModelo
             // 
             this.lblModelo.AutoSize = true;
-            this.lblModelo.Location = new System.Drawing.Point(51, 103);
+            this.lblModelo.Location = new System.Drawing.Point(12, 61);
             this.lblModelo.Name = "lblModelo";
             this.lblModelo.Size = new System.Drawing.Size(90, 13);
             this.lblModelo.TabIndex = 7;
@@ -98,21 +100,31 @@
             this.DgvAutos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DgvAutos.BackgroundColor = System.Drawing.SystemColors.Control;
             this.DgvAutos.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.DgvAutos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvAutos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DgvAutos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvAutos.Location = new System.Drawing.Point(274, 48);
+            this.DgvAutos.Location = new System.Drawing.Point(216, 9);
             this.DgvAutos.MultiSelect = false;
             this.DgvAutos.Name = "DgvAutos";
             this.DgvAutos.RowHeadersVisible = false;
             this.DgvAutos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DgvAutos.Size = new System.Drawing.Size(439, 293);
+            this.DgvAutos.Size = new System.Drawing.Size(471, 282);
             this.DgvAutos.TabIndex = 8;
             this.DgvAutos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAutos_CellClick);
+            this.DgvAutos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvAutos_CellContentClick);
             // 
             // btAgregar
             // 
-            this.btAgregar.Location = new System.Drawing.Point(54, 246);
+            this.btAgregar.Location = new System.Drawing.Point(11, 210);
             this.btAgregar.Name = "btAgregar";
-            this.btAgregar.Size = new System.Drawing.Size(75, 23);
+            this.btAgregar.Size = new System.Drawing.Size(86, 23);
             this.btAgregar.TabIndex = 9;
             this.btAgregar.Text = "Agregar";
             this.btAgregar.UseVisualStyleBackColor = true;
@@ -120,9 +132,9 @@
             // 
             // btEliminar
             // 
-            this.btEliminar.Location = new System.Drawing.Point(174, 246);
+            this.btEliminar.Location = new System.Drawing.Point(110, 210);
             this.btEliminar.Name = "btEliminar";
-            this.btEliminar.Size = new System.Drawing.Size(75, 23);
+            this.btEliminar.Size = new System.Drawing.Size(80, 23);
             this.btEliminar.TabIndex = 10;
             this.btEliminar.Text = "Eliminar";
             this.btEliminar.UseVisualStyleBackColor = true;
@@ -131,7 +143,7 @@
             // LbAnio
             // 
             this.LbAnio.AutoSize = true;
-            this.LbAnio.Location = new System.Drawing.Point(51, 129);
+            this.LbAnio.Location = new System.Drawing.Point(12, 87);
             this.LbAnio.Name = "LbAnio";
             this.LbAnio.Size = new System.Drawing.Size(77, 13);
             this.LbAnio.TabIndex = 12;
@@ -140,27 +152,38 @@
             // 
             // txtBAnio
             // 
-            this.txtBAnio.Location = new System.Drawing.Point(149, 126);
+            this.txtBAnio.Location = new System.Drawing.Point(110, 84);
             this.txtBAnio.Name = "txtBAnio";
-            this.txtBAnio.Size = new System.Drawing.Size(100, 20);
+            this.txtBAnio.Size = new System.Drawing.Size(80, 20);
             this.txtBAnio.TabIndex = 11;
             this.txtBAnio.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // btnModeloPruebas
             // 
-            this.btnModeloPruebas.Location = new System.Drawing.Point(566, 347);
+            this.btnModeloPruebas.Location = new System.Drawing.Point(11, 268);
             this.btnModeloPruebas.Name = "btnModeloPruebas";
-            this.btnModeloPruebas.Size = new System.Drawing.Size(147, 23);
+            this.btnModeloPruebas.Size = new System.Drawing.Size(179, 23);
             this.btnModeloPruebas.TabIndex = 13;
             this.btnModeloPruebas.Text = "Cargar modelo de pruebas";
             this.btnModeloPruebas.UseVisualStyleBackColor = true;
             this.btnModeloPruebas.Click += new System.EventHandler(this.btnModeloPruebas_Click);
             // 
+            // BtnLimpiar
+            // 
+            this.BtnLimpiar.Location = new System.Drawing.Point(11, 239);
+            this.BtnLimpiar.Name = "BtnLimpiar";
+            this.BtnLimpiar.Size = new System.Drawing.Size(179, 23);
+            this.BtnLimpiar.TabIndex = 14;
+            this.BtnLimpiar.Text = "Limpiar Seleccion";
+            this.BtnLimpiar.UseVisualStyleBackColor = true;
+            this.BtnLimpiar.Click += new System.EventHandler(this.BtnLimpiar_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(725, 382);
+            this.ClientSize = new System.Drawing.Size(700, 314);
+            this.Controls.Add(this.BtnLimpiar);
             this.Controls.Add(this.btnModeloPruebas);
             this.Controls.Add(this.LbAnio);
             this.Controls.Add(this.txtBAnio);
@@ -195,6 +218,7 @@
         private System.Windows.Forms.Label LbAnio;
         private System.Windows.Forms.TextBox txtBAnio;
         private System.Windows.Forms.Button btnModeloPruebas;
+        private System.Windows.Forms.Button BtnLimpiar;
     }
 }
 

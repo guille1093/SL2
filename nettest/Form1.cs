@@ -16,10 +16,13 @@ namespace nettest
         {
             InitializeComponent();
         }
-        
+
         //Definimos una Lista de Autos
         public List<Autos> Auto = new List<Autos>();
-        
+
+        //Definimos una Lista de Autos Filtrados
+        public List<Autos> AutosFiltrados = new List<Autos>();
+
         //funcion que rellena la lista con 9 autos de prueba
         private void Rellenar()
         {
@@ -38,7 +41,7 @@ namespace nettest
             };
             DgvAutos.DataSource = source;
         }
-        
+
         //Definimos una funcion para agregar autos a la lista teniendo en cuenta la clase Autos
         private void AgregarAutos()
         {
@@ -50,6 +53,7 @@ namespace nettest
                 Anio = Convert.ToInt32(txtBAnio.Text)
             });
         }
+
         private void LimpiarCampos()
         {
             txtBPatente.Clear();
@@ -58,38 +62,48 @@ namespace nettest
             txtBAnio.Clear();
         }
 
-        private void BtAgregarClick(object sender, EventArgs e)
+        private bool ValidarCampos()
         {
             //Verificamos que los textboxs no esteen vacios y mostramos una advertencia si lo estan
             if (txtBPatente.Text == "" || txtBMarca.Text == "" || txtBModelo.Text == "" || txtBAnio.Text == "")
             {
                 MessageBox.Show("Por favor complete todos los campos",
-                    "Advertencia", 
-                    MessageBoxButtons.OK, 
+                    "Advertencia",
+                    MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
+                return false;
             }
-            else if (txtBPatente.Text.Length != 6)
+            if (txtBPatente.Text.Length != 6)
             {
                 MessageBox.Show("La patente debe tener 6 caracteres",
                     "Advertencia",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
+                return false;
             }
-            else if (txtBAnio.Text.Length != 4)
+            if (txtBAnio.Text.Length != 4)
             {
                 MessageBox.Show("El año debe tener 4 caracteres",
                     "Advertencia",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
+                return false;
             }
-            else if (txtBAnio.Text.Any(char.IsLetter))
+            if (txtBAnio.Text.Any(char.IsLetter))
             {
                 MessageBox.Show("El año debe ser un numero",
                     "Advertencia",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
+                return false;
             }
-            else
+            return true;
+        }
+
+        private void BtAgregarClick(object sender, EventArgs e)
+        {
+            //Verificamos que los textboxs no esteen vacios y mostramos una advertencia si lo estan
+            if (ValidarCampos())
             {
                 //Agregamos un nuevo auto a la lista
                 AgregarAutos();
@@ -132,7 +146,6 @@ namespace nettest
                 DataSource = Auto
             };
             DgvAutos.DataSource = source;
-            LimpiarCampos();
             //Limpiamos los TextBox
             LimpiarCampos();
 
@@ -158,6 +171,16 @@ namespace nettest
         private void btnModeloPruebas_Click(object sender, EventArgs e)
         {
             Rellenar();
+        }
+
+        private void DgvAutos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void BtnLimpiar_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos();
         }
     }
 }
