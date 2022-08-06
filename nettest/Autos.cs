@@ -38,20 +38,22 @@ namespace nettest
         //Getters 🦘🦘🦘//
         public string GetPatente()
         {
-            return Patente;
+            return this.Patente;
         }
         public string GetMarca()
         {
-            return Marca;
+            return this.Marca;
         }
         public string GetModelo()
         {
-            return Modelo;
+            return this.Modelo;
         }
         public int GetAnio()
         {
-            return Anio;
+            return this.Anio;
         }
-
+        
+        //ToString
+        
     }
 }

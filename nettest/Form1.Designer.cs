@@ -38,8 +38,11 @@
             this.clPatente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clMarca = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clModelo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ClAnio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btAgregar = new System.Windows.Forms.Button();
             this.btEliminar = new System.Windows.Forms.Button();
+            this.LbAnio = new System.Windows.Forms.Label();
+            this.txtBAnio = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.DgvAutos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -101,11 +104,12 @@
             this.DgvAutos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clPatente,
             this.clMarca,
-            this.clModelo});
-            this.DgvAutos.Location = new System.Drawing.Point(282, 48);
+            this.clModelo,
+            this.ClAnio});
+            this.DgvAutos.Location = new System.Drawing.Point(274, 48);
             this.DgvAutos.MultiSelect = false;
             this.DgvAutos.Name = "DgvAutos";
-            this.DgvAutos.Size = new System.Drawing.Size(343, 122);
+            this.DgvAutos.Size = new System.Drawing.Size(431, 261);
             this.DgvAutos.TabIndex = 8;
             this.DgvAutos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAutos_CellClick);
             // 
@@ -127,9 +131,14 @@
             this.clModelo.Name = "clModelo";
             this.clModelo.ReadOnly = true;
             // 
+            // ClAnio
+            // 
+            this.ClAnio.HeaderText = "Anio";
+            this.ClAnio.Name = "ClAnio";
+            // 
             // btAgregar
             // 
-            this.btAgregar.Location = new System.Drawing.Point(54, 147);
+            this.btAgregar.Location = new System.Drawing.Point(54, 246);
             this.btAgregar.Name = "btAgregar";
             this.btAgregar.Size = new System.Drawing.Size(75, 23);
             this.btAgregar.TabIndex = 9;
@@ -139,7 +148,7 @@
             // 
             // btEliminar
             // 
-            this.btEliminar.Location = new System.Drawing.Point(174, 147);
+            this.btEliminar.Location = new System.Drawing.Point(174, 246);
             this.btEliminar.Name = "btEliminar";
             this.btEliminar.Size = new System.Drawing.Size(75, 23);
             this.btEliminar.TabIndex = 10;
@@ -147,11 +156,31 @@
             this.btEliminar.UseVisualStyleBackColor = true;
             this.btEliminar.Click += new System.EventHandler(this.btEliminar_Click);
             // 
+            // LbAnio
+            // 
+            this.LbAnio.AutoSize = true;
+            this.LbAnio.Location = new System.Drawing.Point(51, 129);
+            this.LbAnio.Name = "LbAnio";
+            this.LbAnio.Size = new System.Drawing.Size(77, 13);
+            this.LbAnio.TabIndex = 12;
+            this.LbAnio.Text = "Ingrese el Anio";
+            this.LbAnio.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // txtBAnio
+            // 
+            this.txtBAnio.Location = new System.Drawing.Point(149, 126);
+            this.txtBAnio.Name = "txtBAnio";
+            this.txtBAnio.Size = new System.Drawing.Size(100, 20);
+            this.txtBAnio.TabIndex = 11;
+            this.txtBAnio.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(641, 184);
+            this.ClientSize = new System.Drawing.Size(717, 321);
+            this.Controls.Add(this.LbAnio);
+            this.Controls.Add(this.txtBAnio);
             this.Controls.Add(this.btEliminar);
             this.Controls.Add(this.btAgregar);
             this.Controls.Add(this.DgvAutos);
@@ -163,6 +192,7 @@
             this.Controls.Add(this.txtBPatente);
             this.Name = "Form1";
             this.Text = "Final Libre SL2";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DgvAutos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -177,11 +207,14 @@
         private System.Windows.Forms.Label lblMarca;
         private System.Windows.Forms.Label lblModelo;
         private System.Windows.Forms.DataGridView DgvAutos;
+        private System.Windows.Forms.Button btAgregar;
+        private System.Windows.Forms.Button btEliminar;
         private System.Windows.Forms.DataGridViewTextBoxColumn clPatente;
         private System.Windows.Forms.DataGridViewTextBoxColumn clMarca;
         private System.Windows.Forms.DataGridViewTextBoxColumn clModelo;
-        private System.Windows.Forms.Button btAgregar;
-        private System.Windows.Forms.Button btEliminar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ClAnio;
+        private System.Windows.Forms.Label LbAnio;
+        private System.Windows.Forms.TextBox txtBAnio;
     }
 }
 
