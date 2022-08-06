@@ -20,10 +20,69 @@ namespace nettest
         //Definimos una Lista de Autos
         public List<Autos> Auto = new List<Autos>();
 
-        //Definimos una Lista de Autos Filtrados
-        public List<Autos> AutosFiltrados = new List<Autos>();
+        //Funcion que hace visible todas las filas del DataGridView
+        private void MostrarFilas()
+        {
+            foreach (DataGridViewRow row in DgvAutos.Rows)
+            {
+                row.Visible = true;
+            }
+        }
 
-        //funcion que rellena la lista con 9 autos de prueba
+        //funcion que oculta las filas que no contengan el campo seleccionado por el raddiobutton 
+        private void OcultarFilas()
+        {
+            if (RBPatente.Checked)
+            {
+                foreach (DataGridViewRow row in DgvAutos.Rows)
+                {
+                    if (!row.Cells[0].Value.ToString().Contains(txtBPatente.Text))
+                    {
+                        row.Visible = false;
+                    }
+                }
+            }
+            else if (RBMarca.Checked)
+            {
+                foreach (DataGridViewRow row in DgvAutos.Rows)
+                {
+                    if (!row.Cells[1].Value.ToString().Contains(txtBMarca.Text))
+                    {
+                        row.Visible = false;
+                    }
+                }
+            }
+            else if (RBModelo.Checked)
+            {
+                foreach (DataGridViewRow row in DgvAutos.Rows)
+                {
+                    if (!row.Cells[2].Value.ToString().Contains(txtBModelo.Text))
+                    {
+                        row.Visible = false;
+                    }
+                }
+            }
+            else if (RBAnio.Checked)
+            {
+                foreach (DataGridViewRow row in DgvAutos.Rows)
+                {
+                    if (!row.Cells[3].Value.ToString().Contains(txtBAnio.Text))
+                    {
+                        row.Visible = false;
+                    }
+                }
+            }
+        }
+        
+        
+
+        //funcion lambda boolean que retorna true si ya existe una patente en la lista con el mismo valor que el del textbox
+        private bool ExistePatente()
+        {
+            return Auto.Any(auto => auto.Patente == txtBPatente.Text);
+        }
+
+            //funcion que rellena la lista con 9 autos de prueba
         private void Rellenar()
         {
             Auto.Add(new Autos() { Patente = "ABC123", Marca = "Ford", Modelo = "Focus", Anio = 2021 });
@@ -35,14 +94,23 @@ namespace nettest
             Auto.Add(new Autos() { Patente = "STU901", Marca = "Kia", Modelo = "Ceed", Anio = 2015 });
             Auto.Add(new Autos() { Patente = "ABX713", Marca = "Ford", Modelo = "Mondeo", Anio = 2022 });
             Auto.Add(new Autos() { Patente = "MTX820", Marca = "Audi", Modelo = "Q4", Anio = 2017 });
-            var source = new BindingSource
-            {
-                DataSource = Auto
-            };
-            DgvAutos.DataSource = source;
+            Auto.Add(new Autos() { Patente = "QWE908", Marca = "Nissan", Modelo = "Qashqai", Anio = 2018 });
+            Auto.Add(new Autos() { Patente = "RTY654", Marca = "Kia", Modelo = "Rio", Anio = 2019 });
+            Auto.Add(new Autos() { Patente = "UIO321", Marca = "Hyundai", Modelo = "Genesis", Anio = 2020 });
+            Auto.Add(new Autos() { Patente = "VBN654", Marca = "Chevrolet", Modelo = "Cruze", Anio = 2021 });
+            Auto.Add(new Autos() { Patente = "WXY987", Marca = "Honda", Modelo = "Civic", Anio = 2022 });
+            Auto.Add(new Autos() { Patente = "ZAB987", Marca = "Toyota", Modelo = "Corolla", Anio = 2017 });
+            Auto.Add(new Autos() { Patente = "CDE654", Marca = "Nissan", Modelo = "Sentra", Anio = 2018 });
+            Auto.Add(new Autos() { Patente = "FGH321", Marca = "Dodge", Modelo = "Charger", Anio = 1969 });
+            Auto.Add(new Autos() { Patente = "GHI654", Marca = "Ford" , Modelo  = "Mustang", Anio = 2020 });
+            Auto.Add(new Autos() { Patente = "JKL654", Marca = "Acura", Modelo = "NSX", Anio = 1999 });
+            Auto.Add(new Autos() { Patente = "KLM321", Marca = "Audi", Modelo = "Q3", Anio = 2020 });
+            Auto.Add(new Autos() { Patente = "NOP654", Marca = "Nissan", Modelo = "R32", Anio = 1998 });
+            
+            ActualizarDgv();
         }
 
-        //Definimos una funcion para agregar autos a la lista teniendo en cuenta la clase Autos
+        //Definimos una funcion para agregar autos a la lista
         private void AgregarAutos()
         {
             Auto.Add(new Autos
@@ -62,9 +130,18 @@ namespace nettest
             txtBAnio.Clear();
         }
 
+        private void ActualizarDgv()
+        {
+            var source = new BindingSource
+            {
+                DataSource = Auto
+            };
+            DgvAutos.DataSource = source;
+        }
+
+
         private bool ValidarCampos()
         {
-            //Verificamos que los textboxs no esteen vacios y mostramos una advertencia si lo estan
             if (txtBPatente.Text == "" || txtBMarca.Text == "" || txtBModelo.Text == "" || txtBAnio.Text == "")
             {
                 MessageBox.Show("Por favor complete todos los campos",
@@ -89,33 +166,21 @@ namespace nettest
                     MessageBoxIcon.Warning);
                 return false;
             }
-            if (txtBAnio.Text.Any(char.IsLetter))
-            {
-                MessageBox.Show("El año debe ser un numero",
-                    "Advertencia",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-                return false;
-            }
-            return true;
+
+            if (!txtBAnio.Text.Any(char.IsLetter)) return true;
+            MessageBox.Show("El año debe ser un numero",
+                "Advertencia",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning);
+            return false;
         }
 
         private void BtAgregarClick(object sender, EventArgs e)
         {
-            //Verificamos que los textboxs no esteen vacios y mostramos una advertencia si lo estan
-            if (ValidarCampos())
-            {
-                //Agregamos un nuevo auto a la lista
-                AgregarAutos();
-                //Limpiamos los textboxs
-                LimpiarCampos();
-            }
-            //Populamos la tableview con los datos de la lista
-            var source = new BindingSource
-            {
-                DataSource = Auto
-            };
-            DgvAutos.DataSource = source;
+            //Verificamos que los textboxs no esteen vacios y la patente no sea repetida
+            if (!ValidarCampos() || ExistePatente()) return;
+            AgregarAutos();
+            ActualizarDgv();
             LimpiarCampos();
         }
 
@@ -124,8 +189,8 @@ namespace nettest
             //Obtenemos la fila seleccionada
             if (DgvAutos.CurrentRow == null) return;
             int n = DgvAutos.CurrentRow.Index;
-            //Seteamos los valores de los Textbox con los valores de las columnas
             if (n == -1) return;
+            //Seteamos los valores de los Textbox con los valores de las columnas
             txtBPatente.Text = DgvAutos.Rows[n].Cells[0].Value.ToString();
             txtBMarca.Text = DgvAutos.Rows[n].Cells[1].Value.ToString();
             txtBModelo.Text = DgvAutos.Rows[n].Cells[2].Value.ToString();
@@ -141,11 +206,7 @@ namespace nettest
             if (n == -1) return;
             Auto.RemoveAt(n);
             //Populamos la tableview con los datos actualizados
-            var source = new BindingSource
-            {
-                DataSource = Auto
-            };
-            DgvAutos.DataSource = source;
+            ActualizarDgv();
             //Limpiamos los TextBox
             LimpiarCampos();
 
@@ -182,5 +243,26 @@ namespace nettest
         {
             LimpiarCampos();
         }
+
+        private void BtnOcultar_Click(object sender, EventArgs e)
+        {
+            MostrarFilas();
+        }
+
+        private void BtnBuscar_Click(object sender, EventArgs e)
+        {
+            OcultarFilas();
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton1_CheckedChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

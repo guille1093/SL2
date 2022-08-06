@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtBPatente = new System.Windows.Forms.TextBox();
             this.txtBMarca = new System.Windows.Forms.TextBox();
             this.txtBModelo = new System.Windows.Forms.TextBox();
@@ -42,7 +42,15 @@
             this.txtBAnio = new System.Windows.Forms.TextBox();
             this.btnModeloPruebas = new System.Windows.Forms.Button();
             this.BtnLimpiar = new System.Windows.Forms.Button();
+            this.BtnMostrar = new System.Windows.Forms.Button();
+            this.BtnBuscar = new System.Windows.Forms.Button();
+            this.GpBoxElementosDeBusqueda = new System.Windows.Forms.GroupBox();
+            this.RBAnio = new System.Windows.Forms.RadioButton();
+            this.RBModelo = new System.Windows.Forms.RadioButton();
+            this.RBMarca = new System.Windows.Forms.RadioButton();
+            this.RBPatente = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.DgvAutos)).BeginInit();
+            this.GpBoxElementosDeBusqueda.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtBPatente
@@ -101,28 +109,28 @@
             this.DgvAutos.BackgroundColor = System.Drawing.SystemColors.Control;
             this.DgvAutos.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DgvAutos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgvAutos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvAutos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DgvAutos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvAutos.Location = new System.Drawing.Point(216, 9);
+            this.DgvAutos.Location = new System.Drawing.Point(220, 9);
             this.DgvAutos.MultiSelect = false;
             this.DgvAutos.Name = "DgvAutos";
             this.DgvAutos.RowHeadersVisible = false;
             this.DgvAutos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DgvAutos.Size = new System.Drawing.Size(471, 282);
+            this.DgvAutos.Size = new System.Drawing.Size(482, 347);
             this.DgvAutos.TabIndex = 8;
             this.DgvAutos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAutos_CellClick);
             this.DgvAutos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvAutos_CellContentClick);
             // 
             // btAgregar
             // 
-            this.btAgregar.Location = new System.Drawing.Point(11, 210);
+            this.btAgregar.Location = new System.Drawing.Point(10, 271);
             this.btAgregar.Name = "btAgregar";
             this.btAgregar.Size = new System.Drawing.Size(86, 23);
             this.btAgregar.TabIndex = 9;
@@ -132,7 +140,7 @@
             // 
             // btEliminar
             // 
-            this.btEliminar.Location = new System.Drawing.Point(110, 210);
+            this.btEliminar.Location = new System.Drawing.Point(109, 271);
             this.btEliminar.Name = "btEliminar";
             this.btEliminar.Size = new System.Drawing.Size(80, 23);
             this.btEliminar.TabIndex = 10;
@@ -145,9 +153,9 @@
             this.LbAnio.AutoSize = true;
             this.LbAnio.Location = new System.Drawing.Point(12, 87);
             this.LbAnio.Name = "LbAnio";
-            this.LbAnio.Size = new System.Drawing.Size(77, 13);
+            this.LbAnio.Size = new System.Drawing.Size(74, 13);
             this.LbAnio.TabIndex = 12;
-            this.LbAnio.Text = "Ingrese el Anio";
+            this.LbAnio.Text = "Ingrese el año";
             this.LbAnio.Click += new System.EventHandler(this.label1_Click);
             // 
             // txtBAnio
@@ -160,7 +168,7 @@
             // 
             // btnModeloPruebas
             // 
-            this.btnModeloPruebas.Location = new System.Drawing.Point(11, 268);
+            this.btnModeloPruebas.Location = new System.Drawing.Point(10, 329);
             this.btnModeloPruebas.Name = "btnModeloPruebas";
             this.btnModeloPruebas.Size = new System.Drawing.Size(179, 23);
             this.btnModeloPruebas.TabIndex = 13;
@@ -170,7 +178,7 @@
             // 
             // BtnLimpiar
             // 
-            this.BtnLimpiar.Location = new System.Drawing.Point(11, 239);
+            this.BtnLimpiar.Location = new System.Drawing.Point(10, 300);
             this.BtnLimpiar.Name = "BtnLimpiar";
             this.BtnLimpiar.Size = new System.Drawing.Size(179, 23);
             this.BtnLimpiar.TabIndex = 14;
@@ -178,11 +186,94 @@
             this.BtnLimpiar.UseVisualStyleBackColor = true;
             this.BtnLimpiar.Click += new System.EventHandler(this.BtnLimpiar_Click);
             // 
+            // BtnMostrar
+            // 
+            this.BtnMostrar.Location = new System.Drawing.Point(104, 109);
+            this.BtnMostrar.Name = "BtnMostrar";
+            this.BtnMostrar.Size = new System.Drawing.Size(80, 23);
+            this.BtnMostrar.TabIndex = 15;
+            this.BtnMostrar.Text = "Mostrar todos";
+            this.BtnMostrar.UseVisualStyleBackColor = true;
+            this.BtnMostrar.Click += new System.EventHandler(this.BtnOcultar_Click);
+            // 
+            // BtnBuscar
+            // 
+            this.BtnBuscar.Location = new System.Drawing.Point(5, 109);
+            this.BtnBuscar.Name = "BtnBuscar";
+            this.BtnBuscar.Size = new System.Drawing.Size(86, 23);
+            this.BtnBuscar.TabIndex = 16;
+            this.BtnBuscar.Text = "Buscar";
+            this.BtnBuscar.UseVisualStyleBackColor = true;
+            this.BtnBuscar.Click += new System.EventHandler(this.BtnBuscar_Click);
+            // 
+            // GpBoxElementosDeBusqueda
+            // 
+            this.GpBoxElementosDeBusqueda.Controls.Add(this.RBAnio);
+            this.GpBoxElementosDeBusqueda.Controls.Add(this.BtnMostrar);
+            this.GpBoxElementosDeBusqueda.Controls.Add(this.RBModelo);
+            this.GpBoxElementosDeBusqueda.Controls.Add(this.RBMarca);
+            this.GpBoxElementosDeBusqueda.Controls.Add(this.RBPatente);
+            this.GpBoxElementosDeBusqueda.Controls.Add(this.BtnBuscar);
+            this.GpBoxElementosDeBusqueda.Location = new System.Drawing.Point(5, 130);
+            this.GpBoxElementosDeBusqueda.Name = "GpBoxElementosDeBusqueda";
+            this.GpBoxElementosDeBusqueda.Size = new System.Drawing.Size(193, 137);
+            this.GpBoxElementosDeBusqueda.TabIndex = 17;
+            this.GpBoxElementosDeBusqueda.TabStop = false;
+            this.GpBoxElementosDeBusqueda.Text = "Seleccione el campo a buscar";
+            // 
+            // RBAnio
+            // 
+            this.RBAnio.AutoSize = true;
+            this.RBAnio.Location = new System.Drawing.Point(7, 89);
+            this.RBAnio.Name = "RBAnio";
+            this.RBAnio.Size = new System.Drawing.Size(44, 17);
+            this.RBAnio.TabIndex = 20;
+            this.RBAnio.TabStop = true;
+            this.RBAnio.Text = "Año";
+            this.RBAnio.UseVisualStyleBackColor = true;
+            // 
+            // RBModelo
+            // 
+            this.RBModelo.AutoSize = true;
+            this.RBModelo.Location = new System.Drawing.Point(7, 66);
+            this.RBModelo.Name = "RBModelo";
+            this.RBModelo.Size = new System.Drawing.Size(60, 17);
+            this.RBModelo.TabIndex = 19;
+            this.RBModelo.TabStop = true;
+            this.RBModelo.Text = "Modelo";
+            this.RBModelo.UseVisualStyleBackColor = true;
+            this.RBModelo.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged_1);
+            // 
+            // RBMarca
+            // 
+            this.RBMarca.AutoSize = true;
+            this.RBMarca.Location = new System.Drawing.Point(7, 43);
+            this.RBMarca.Name = "RBMarca";
+            this.RBMarca.Size = new System.Drawing.Size(55, 17);
+            this.RBMarca.TabIndex = 18;
+            this.RBMarca.TabStop = true;
+            this.RBMarca.Text = "Marca";
+            this.RBMarca.UseVisualStyleBackColor = true;
+            this.RBMarca.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
+            // RBPatente
+            // 
+            this.RBPatente.AutoSize = true;
+            this.RBPatente.Checked = true;
+            this.RBPatente.Location = new System.Drawing.Point(7, 20);
+            this.RBPatente.Name = "RBPatente";
+            this.RBPatente.Size = new System.Drawing.Size(62, 17);
+            this.RBPatente.TabIndex = 17;
+            this.RBPatente.TabStop = true;
+            this.RBPatente.Text = "Patente";
+            this.RBPatente.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(700, 314);
+            this.ClientSize = new System.Drawing.Size(714, 368);
+            this.Controls.Add(this.GpBoxElementosDeBusqueda);
             this.Controls.Add(this.BtnLimpiar);
             this.Controls.Add(this.btnModeloPruebas);
             this.Controls.Add(this.LbAnio);
@@ -200,6 +291,8 @@
             this.Text = "Final Libre SL2";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DgvAutos)).EndInit();
+            this.GpBoxElementosDeBusqueda.ResumeLayout(false);
+            this.GpBoxElementosDeBusqueda.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -219,6 +312,13 @@
         private System.Windows.Forms.TextBox txtBAnio;
         private System.Windows.Forms.Button btnModeloPruebas;
         private System.Windows.Forms.Button BtnLimpiar;
+        private System.Windows.Forms.Button BtnMostrar;
+        private System.Windows.Forms.Button BtnBuscar;
+        private System.Windows.Forms.GroupBox GpBoxElementosDeBusqueda;
+        private System.Windows.Forms.RadioButton RBMarca;
+        private System.Windows.Forms.RadioButton RBPatente;
+        private System.Windows.Forms.RadioButton RBModelo;
+        private System.Windows.Forms.RadioButton RBAnio;
     }
 }
 
