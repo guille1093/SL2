@@ -35,10 +35,6 @@
             this.lblMarca = new System.Windows.Forms.Label();
             this.lblModelo = new System.Windows.Forms.Label();
             this.DgvAutos = new System.Windows.Forms.DataGridView();
-            this.clPatente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clMarca = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clModelo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ClAnio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btAgregar = new System.Windows.Forms.Button();
             this.btEliminar = new System.Windows.Forms.Button();
             this.LbAnio = new System.Windows.Forms.Label();
@@ -101,40 +97,12 @@
             this.DgvAutos.BackgroundColor = System.Drawing.SystemColors.Control;
             this.DgvAutos.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DgvAutos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvAutos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clPatente,
-            this.clMarca,
-            this.clModelo,
-            this.ClAnio});
             this.DgvAutos.Location = new System.Drawing.Point(274, 48);
             this.DgvAutos.MultiSelect = false;
             this.DgvAutos.Name = "DgvAutos";
             this.DgvAutos.Size = new System.Drawing.Size(431, 261);
             this.DgvAutos.TabIndex = 8;
             this.DgvAutos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAutos_CellClick);
-            // 
-            // clPatente
-            // 
-            this.clPatente.HeaderText = "Patente";
-            this.clPatente.Name = "clPatente";
-            this.clPatente.ReadOnly = true;
-            // 
-            // clMarca
-            // 
-            this.clMarca.HeaderText = "Marca";
-            this.clMarca.Name = "clMarca";
-            this.clMarca.ReadOnly = true;
-            // 
-            // clModelo
-            // 
-            this.clModelo.HeaderText = "Modelo";
-            this.clModelo.Name = "clModelo";
-            this.clModelo.ReadOnly = true;
-            // 
-            // ClAnio
-            // 
-            this.ClAnio.HeaderText = "Anio";
-            this.ClAnio.Name = "ClAnio";
             // 
             // btAgregar
             // 
@@ -209,10 +177,6 @@
         private System.Windows.Forms.DataGridView DgvAutos;
         private System.Windows.Forms.Button btAgregar;
         private System.Windows.Forms.Button btEliminar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clPatente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clMarca;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clModelo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ClAnio;
         private System.Windows.Forms.Label LbAnio;
         private System.Windows.Forms.TextBox txtBAnio;
     }

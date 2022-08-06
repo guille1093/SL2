@@ -25,7 +25,6 @@ namespace nettest
         //    public string modelo;
         //    public string patente;
         //    //add setters
-
         //    public void SetAuto(string marca, string modelo, string patente)
         //    {
         //        this.marca = marca;
@@ -49,10 +48,18 @@ namespace nettest
         //}
         //Definimos una Lista de Autos
         public List<Autos> Auto = new List<Autos>();
+        
         //Definimos una funcion para agregar autos a la lista teniendo en cuenta la clase Autos
         public void AgregarAutos()
         {
-            Auto.Add(new Autos() { Patente = "ABC123", Marca = "Ford", Modelo = "Focus", Anio = 2021 });
+            //Auto.Add(new Autos() { Patente = "ABC123", Marca = "Ford", Modelo = "Focus", Anio = 2021 });
+            Auto.Add(new Autos
+            {
+                Patente = txtBPatente.Text,
+                Marca = txtBMarca.Text,
+                Modelo = txtBModelo.Text,
+                Anio = Convert.ToInt32(txtBAnio.Text)
+            });
         }
         private void limpiarCampos()
         {
@@ -64,30 +71,24 @@ namespace nettest
 
         private void btAgregar_Click(object sender, EventArgs e)
         {
-            //Agregamos un objeto Auto a la lista con los parametros de los textbox
-            Auto.Add(new Autos
+            //Verificamos que los textboxs no esteen vacios y mostramos una advertencia si lo estan
+            if (txtBPatente.Text == "" || txtBMarca.Text == "" || txtBModelo.Text == "" || txtBAnio.Text == "")
             {
-                Patente = txtBPatente.Text, 
-                Marca = txtBMarca.Text, 
-                Modelo = txtBModelo.Text, 
-                Anio = Convert.ToInt32(txtBAnio.Text)
-            });
+                MessageBox.Show("Por favor complete todos los campos");
+            }
+            else
+            {
+                //Agregamos un Auto al array creado
+                AgregarAutos();
+                //Limpiamos los campos
+                limpiarCampos();
+            }
+
             //Populamos la tableview con los datos de la lista
-            //DgvAutos.DataSource = Auto;
-            //show the list in the tableview
-            DgvAutos.DataSource = Auto;
-
-
-            ////Obtenemos el indice sobre el que estamos trabajando
-            //int n = DgvAutos.Rows.Add();
-            ////Seteamos los valores de las columnas con los valores de los TextBox
-            ////TODO: No se valida una mierda todavia. Valida con un regex por lo menos
-            //DgvAutos.Rows[n].Cells[0].Value = txtBPatente.Text;
-            //DgvAutos.Rows[n].Cells[1].Value = txtBMarca.Text;
-            //DgvAutos.Rows[n].Cells[2].Value = txtBModelo.Text;
-            //Limpiamos los TextBox
+            BindingSource source = new BindingSource();
+            source.DataSource = Auto;
+            DgvAutos.DataSource = source;
             limpiarCampos();
-            
         }
 
         private void dgvAutos_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -116,9 +117,8 @@ namespace nettest
                 if (n == -1) return;
                 DgvAutos.Rows.RemoveAt(n);
             }
-            catch (Exception ex)
+            catch
             {
-                //MessageBox.Show(ex.Message);
                 return;
             }
             //Limpiamos los TextBox
@@ -140,8 +140,9 @@ namespace nettest
         //Evento por defecto del Formulario, inicializamos la lista de autos
         private void Form1_Load(object sender, EventArgs e)
         {
-            AgregarAutos();
-            DgvAutos.DataSource = Auto;
+            //DgvAutos.AutoGenerateColumns = true;
+            //AgregarAutos();
+           // DgvAutos.DataSource = Auto;
         }
     }
 }
