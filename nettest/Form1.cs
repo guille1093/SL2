@@ -51,6 +51,7 @@ namespace nettest
         {
             if (RBPatente.Checked)
             {
+                //TODO: Algunas veces el DataGridView toma la cell[0] como header lo que genera una excepcion al intentar ser modificada
                 try
                 {
                     foreach (DataGridViewRow row in DgvAutos.Rows)
