@@ -125,7 +125,6 @@
             this.DgvAutos.Size = new System.Drawing.Size(500, 322);
             this.DgvAutos.TabIndex = 8;
             this.DgvAutos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAutos_CellClick);
-            this.DgvAutos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvAutos_CellContentClick);
             // 
             // btAgregar
             // 
@@ -155,7 +154,6 @@
             this.LbAnio.Size = new System.Drawing.Size(74, 13);
             this.LbAnio.TabIndex = 12;
             this.LbAnio.Text = "Ingrese el año";
-            this.LbAnio.Click += new System.EventHandler(this.label1_Click);
             // 
             // txtBAnio
             // 
@@ -163,7 +161,6 @@
             this.txtBAnio.Name = "txtBAnio";
             this.txtBAnio.Size = new System.Drawing.Size(80, 20);
             this.txtBAnio.TabIndex = 11;
-            this.txtBAnio.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // btnModeloPruebas
             // 
@@ -208,7 +205,6 @@
             this.GpBoxElementosDeBusqueda.TabIndex = 17;
             this.GpBoxElementosDeBusqueda.TabStop = false;
             this.GpBoxElementosDeBusqueda.Text = "Seleccione el campo a buscar";
-            this.GpBoxElementosDeBusqueda.Enter += new System.EventHandler(this.GpBoxElementosDeBusqueda_Enter);
             // 
             // RBAnio
             // 
@@ -231,7 +227,6 @@
             this.RBModelo.TabStop = true;
             this.RBModelo.Text = "Modelo";
             this.RBModelo.UseVisualStyleBackColor = true;
-            this.RBModelo.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged_1);
             // 
             // RBMarca
             // 
@@ -243,7 +238,6 @@
             this.RBMarca.TabStop = true;
             this.RBMarca.Text = "Marca";
             this.RBMarca.UseVisualStyleBackColor = true;
-            this.RBMarca.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // RBPatente
             // 

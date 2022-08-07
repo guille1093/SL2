@@ -17,13 +17,6 @@ namespace nettest
             InitializeComponent();
         }
 
-        //Evento por defecto del Formulario, inicializamos propiedades y funciones
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
-        }
-
         //Definimos una Lista de Autos
         public List<Autos> Auto = new List<Autos>();
 
@@ -51,7 +44,7 @@ namespace nettest
         {
             if (RBPatente.Checked)
             {
-                //TODO: Algunas veces el DataGridView toma la cell[0] como header lo que genera una excepcion al intentar ser modificada
+                //Algunas veces el DataGridView toma la cell[0] como header lo que genera una excepcion al intentar ser modificada
                 try
                 {
                     foreach (DataGridViewRow row in DgvAutos.Rows)
@@ -209,6 +202,19 @@ namespace nettest
             return false;
         }
 
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////// Event Handlers del formulario ////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////////////
+
+        //Evento por defecto del Formulario, inicializamos propiedades y funciones
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+        }
+
+        //Click en el boton agregar
         private void BtAgregarClick(object sender, EventArgs e)
         {
             //Verificamos que los textboxs no esteen vacios y la patente no sea repetida
@@ -218,6 +224,7 @@ namespace nettest
             LimpiarCampos();
         }
 
+        //Click en una celda valida del DataGridView
         private void dgvAutos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             //Obtenemos la fila seleccionada
@@ -232,6 +239,7 @@ namespace nettest
 
         }
 
+        //
         private void btEliminar_Click(object sender, EventArgs e)
         {
             if (DgvAutos.CurrentRow == null) return; 
@@ -243,26 +251,12 @@ namespace nettest
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
 
         private void btnModeloPruebas_Click(object sender, EventArgs e)
         {
             Rellenar();
         }
 
-        private void DgvAutos_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
 
         private void BtnLimpiar_Click(object sender, EventArgs e)
         {
@@ -275,19 +269,5 @@ namespace nettest
             OcultarFilas();
         }
 
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radioButton1_CheckedChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void GpBoxElementosDeBusqueda_Enter(object sender, EventArgs e)
-        {
-
-        }
     }
 }
