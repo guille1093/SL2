@@ -23,10 +23,7 @@ namespace nettest
         //Definimos como DataSource del TableGridView la Lista de Autos
         private void ActualizarDgv()
         {
-            var source = new BindingSource
-            {
-                DataSource = Auto
-            };
+            BindingSource source = new BindingSource{DataSource = Auto};
             DgvAutos.DataSource = source;
         }
 
@@ -245,6 +242,10 @@ namespace nettest
             if (DgvAutos.CurrentRow == null) return; 
             int n = DgvAutos.CurrentRow.Index;
             if (n == -1) return;
+            MessageBox.Show("¿Esta seguro que desea eliminar el auto " + DgvAutos.Rows[n].Cells[0].Value.ToString() + "?",
+                "Advertencia",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
             Auto.RemoveAt(n);
             ActualizarDgv();
             LimpiarCampos();
