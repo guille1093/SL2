@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace nettest
@@ -43,127 +38,81 @@ namespace nettest
             }
         }
 
-        //Oculta las filas que no contengan el campo seleccionado por el raddiobutton 
-        private void OcultarFilas()
+        //Oculta las filas que no cumplan con el criterio de busqueda utilizando una query Linq
+        private void FiltrarFilas()
         {
-            if (RBPatente.Checked)
+            switch (RBPatente.Checked)
             {
-                //Algunas veces el DataGridView toma la cell[0] como header lo que genera una excepcion al intentar ser modificada
-                try
-                {
-                    foreach (DataGridViewRow row in DgvAutos.Rows)
-                    {
-                        if (!row.Cells[0].Value.ToString().Contains(txtBPatente.Text))
-                        {
-                            row.Visible = false;
-                        }
-                    }
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("No se encontraron coincidencias", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                
+                case true:
+                    DgvAutos.Rows.Cast<DataGridViewRow>().Where(row => !row.Cells[0].Value.ToString().Contains(txtBPatente.Text)).ToList().ForEach(row => row.Visible = false);
+                    break;
+                default:
+                    break;
             }
-
-            if (RBMarca.Checked)
+            switch (RBMarca.Checked)
             {
-                try
-                {
-                    foreach (DataGridViewRow row in DgvAutos.Rows)
-                    {
-                        if (!row.Cells[1].Value.ToString().Contains(txtBMarca.Text))
-                        {
-                            row.Visible = false;
-                        }
-                    }
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("No se encontraron coincidencias", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                case true:
+                    DgvAutos.Rows.Cast<DataGridViewRow>().Where(row => !row.Cells[1].Value.ToString().Contains(txtBMarca.Text)).ToList().ForEach(row => row.Visible = false);
+                    break;
+                default:
+                    break;
             }
-            if (RBModelo.Checked)
+            switch (RBModelo.Checked)
             {
-                try
-                {
-                    foreach (DataGridViewRow row in DgvAutos.Rows)
-                    {
-                        if (!row.Cells[2].Value.ToString().Contains(txtBModelo.Text))
-                        {
-                            row.Visible = false;
-                        }
-                    }
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("No se encontraron coincidencias", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
+                case true:
+                    DgvAutos.Rows.Cast<DataGridViewRow>().Where(row => !row.Cells[2].Value.ToString().Contains(txtBModelo.Text)).ToList().ForEach(row => row.Visible = false);
+                    break;
+                default:
+                    break;
             }
-            if (RBAnio.Checked)
+            switch (RBAnio.Checked)
             {
-                try
-                {
-                    foreach (DataGridViewRow row in DgvAutos.Rows)
-                    {
-                        if (!row.Cells[3].Value.ToString().Contains(txtBAnio.Text))
-                        {
-                            row.Visible = false;
-                        }
-                    }
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("No se encontraron coincidencias", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                case true:
+                    DgvAutos.Rows.Cast<DataGridViewRow>().Where(row => !row.Cells[3].Value.ToString().Contains(txtBAnio.Text)).ToList().ForEach(row => row.Visible = false);
+                    break;
+                default:
+                    break;
             }
         }
-        
-        
 
-        //funcion lambda booleana con LINQ(Language Integrated Query) que retorna true si ya existe una patente en la lista con el mismo valor que el del textbox
+
+
+        //funcion lambda booleana que retorna true si ya existe una patente en la lista con el mismo valor que el del textbox
         private bool ExistePatente()
         {
             if (!Auto.Exists(x => x.Patente == txtBPatente.Text)) return false;
-            MessageBox.Show("La patente ya existe", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("La patente ya existe", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
             return true;
         }
 
         //funcion que rellena la lista con autos de prueba
         private void Rellenar()
         {
-            Auto.Add(new Autos() { Patente = "ABC123", Marca = "Ford", Modelo = "Focus", Anio = 2021 });
-            Auto.Add(new Autos() { Patente = "DEF456", Marca = "Chevrolet", Modelo = "Cruze", Anio = 2020 });
-            Auto.Add(new Autos() { Patente = "GHI789", Marca = "Honda", Modelo = "Civic", Anio = 2019 });
-            Auto.Add(new Autos() { Patente = "JKL012", Marca = "Toyota", Modelo = "Corolla", Anio = 2018 });
-            Auto.Add(new Autos() { Patente = "MNO345", Marca = "Nissan", Modelo = "Sentra", Anio = 2017 });
-            Auto.Add(new Autos() { Patente = "PQR678", Marca = "Hyundai", Modelo = "Sonata", Anio = 2016 });
-            Auto.Add(new Autos() { Patente = "STU901", Marca = "Kia", Modelo = "Ceed", Anio = 2015 });
-            Auto.Add(new Autos() { Patente = "ABX713", Marca = "Ford", Modelo = "Mondeo", Anio = 2022 });
-            Auto.Add(new Autos() { Patente = "MTX820", Marca = "Audi", Modelo = "Q4", Anio = 2017 });
-            Auto.Add(new Autos() { Patente = "QWE908", Marca = "Nissan", Modelo = "Qashqai", Anio = 2018 });
-            Auto.Add(new Autos() { Patente = "RTY654", Marca = "Kia", Modelo = "Rio", Anio = 2019 });
-            Auto.Add(new Autos() { Patente = "UIO321", Marca = "Hyundai", Modelo = "Genesis", Anio = 2020 });
-            Auto.Add(new Autos() { Patente = "VBN654", Marca = "Chevrolet", Modelo = "Cruze", Anio = 2021 });
-            Auto.Add(new Autos() { Patente = "WXY987", Marca = "Honda", Modelo = "Civic", Anio = 2022 });
-            Auto.Add(new Autos() { Patente = "ZAB987", Marca = "Toyota", Modelo = "Corolla", Anio = 2017 });
-            Auto.Add(new Autos() { Patente = "CDE654", Marca = "Nissan", Modelo = "Sentra", Anio = 2018 });
-            Auto.Add(new Autos() { Patente = "FGH321", Marca = "Dodge", Modelo = "Charger", Anio = 1969 });
-            Auto.Add(new Autos() { Patente = "GHI654", Marca = "Ford" , Modelo  = "Mustang", Anio = 2020 });
-            Auto.Add(new Autos() { Patente = "JKL654", Marca = "Acura", Modelo = "NSX", Anio = 1999 });
-            Auto.Add(new Autos() { Patente = "KLM321", Marca = "Audi", Modelo = "Q3", Anio = 2020 });
-            Auto.Add(new Autos() { Patente = "NOP654", Marca = "Nissan", Modelo = "R32", Anio = 1998 });
+            Auto.Add(new Autos() { Patente = "ABC123", Marca = "Ford",      Modelo = "Focus",    Anio = 2021 });
+            Auto.Add(new Autos() { Patente = "DEF456", Marca = "Chevrolet", Modelo = "Cruze",    Anio = 2020 });
+            Auto.Add(new Autos() { Patente = "GHI789", Marca = "Honda",     Modelo = "Civic",    Anio = 2019 });
+            Auto.Add(new Autos() { Patente = "JKL012", Marca = "Toyota",    Modelo = "Corolla",  Anio = 2018 });
+            Auto.Add(new Autos() { Patente = "MNO345", Marca = "Nissan",    Modelo = "Sentra",   Anio = 2017 });
+            Auto.Add(new Autos() { Patente = "PQR678", Marca = "Hyundai",   Modelo = "Sonata",   Anio = 2016 });
+            Auto.Add(new Autos() { Patente = "STU901", Marca = "Kia",       Modelo = "Ceed",     Anio = 2015 });
+            Auto.Add(new Autos() { Patente = "ABX713", Marca = "Ford",      Modelo = "Mondeo",   Anio = 2022 });
+            Auto.Add(new Autos() { Patente = "MTX820", Marca = "Audi",      Modelo = "Q4",       Anio = 2017 });
+            Auto.Add(new Autos() { Patente = "QWE908", Marca = "Nissan",    Modelo = "Qashqai",  Anio = 2018 });
+            Auto.Add(new Autos() { Patente = "RTY654", Marca = "Kia",       Modelo = "Rio",      Anio = 2019 });
+            Auto.Add(new Autos() { Patente = "UIO321", Marca = "Hyundai",   Modelo = "Genesis",  Anio = 2020 });
+            Auto.Add(new Autos() { Patente = "VBN654", Marca = "Chevrolet", Modelo = "Cruze",    Anio = 2021 });
+            Auto.Add(new Autos() { Patente = "WXY987", Marca = "Honda",     Modelo = "Civic",    Anio = 2022 });
+            Auto.Add(new Autos() { Patente = "ZAB987", Marca = "Toyota",    Modelo = "Corolla",  Anio = 2017 });
+            Auto.Add(new Autos() { Patente = "CDE654", Marca = "Nissan",    Modelo = "Sentra",   Anio = 2018 });
+            Auto.Add(new Autos() { Patente = "FGH321", Marca = "Dodge",     Modelo = "Charger",  Anio = 1969 });
+            Auto.Add(new Autos() { Patente = "GHI654", Marca = "Ford" ,     Modelo  = "Mustang", Anio = 2020 });
+            Auto.Add(new Autos() { Patente = "JKL654", Marca = "Acura",     Modelo = "NSX",      Anio = 1999 });
+            Auto.Add(new Autos() { Patente = "KLM321", Marca = "Audi",      Modelo = "Q3",       Anio = 2020 });
+            Auto.Add(new Autos() { Patente = "NOP654", Marca = "Nissan",    Modelo = "R32",      Anio = 1998 });
             ActualizarDgv();
             DgvAutos.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             btnModeloPruebas.Enabled = false;
-            //btnModeloPruebas.Visible = false;
-            //set the hoover property to show a message when the mouse is over the button
-            btnModeloPruebas.MouseHover += (sender, e) =>
-            {
-                ToolTip tt = new ToolTip();
-                tt.SetToolTip(btnModeloPruebas, "El modelo de pruebas solo puede ser ingresado una vez");
-            };
         }
 
         //Definimos una funcion para agregar autos a la lista
@@ -177,7 +126,8 @@ namespace nettest
                 Anio = Convert.ToInt32(txtBAnio.Text)
             });
             //Mensaje de confirmacion de agregado de autos
-            MessageBox.Show(txtBMarca.Text+" "+txtBModelo.Text+ " agregado correctamente", "Operacion exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(txtBMarca.Text+" "+txtBModelo.Text+ " agregado correctamente",
+                "Operacion exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void LimpiarCampos()
@@ -191,7 +141,10 @@ namespace nettest
         private bool ValidarCampos()
         {
             //Validamos los campos con las expresiones regulares
-            if (_regexPatente.IsMatch(txtBPatente.Text) && _regexMarca.IsMatch(txtBMarca.Text) && _regexModelo.IsMatch(txtBModelo.Text) && _regexAnio.IsMatch(txtBAnio.Text)) return true;
+            if (_regexPatente.IsMatch(txtBPatente.Text) 
+                && _regexMarca.IsMatch(txtBMarca.Text) 
+                && _regexModelo.IsMatch(txtBModelo.Text) 
+                && _regexAnio.IsMatch(txtBAnio.Text)) return true;
             MessageBox.Show("Por favor, ingrese los datos correctamente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return false;
         }
@@ -264,7 +217,16 @@ namespace nettest
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            OcultarFilas();
+            try
+            {
+                FiltrarFilas();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No se encontraron coincidencias", "Error", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MostrarFilas();
+            }
         }
 
     }
