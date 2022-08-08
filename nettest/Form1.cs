@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -20,14 +21,20 @@ namespace nettest
         //Definimos una Lista de Autos
         public List<Autos> Auto = new List<Autos>();
 
-        //Definimos como DataSource del TableGridView la Lista de Autos
+        //Creamos las expresiones regulares para validar los campos
+        private readonly Regex _regexPatente = new Regex(@"^[A-Z]{3}\d{3}$");
+        private readonly Regex _regexMarca = new Regex(@"^[A-Za-z]+$");
+        private readonly Regex _regexModelo = new Regex(@"^[A-Za-z]+$");
+        private readonly Regex _regexAnio = new Regex(@"^\d{4}$");
+
+        //Define como DataSource del TableGridView la Lista de Autos
         private void ActualizarDgv()
         {
             BindingSource source = new BindingSource{DataSource = Auto};
             DgvAutos.DataSource = source;
         }
 
-        //Funcion que hace visible todas las filas del DataGridView
+        //Hace visibles todas las filas del DataGridView
         private void MostrarFilas()
         {
             foreach (DataGridViewRow row in DgvAutos.Rows)
@@ -36,7 +43,7 @@ namespace nettest
             }
         }
 
-        //funcion que oculta las filas que no contengan el campo seleccionado por el raddiobutton 
+        //Oculta las filas que no contengan el campo seleccionado por el raddiobutton 
         private void OcultarFilas()
         {
             if (RBPatente.Checked)
@@ -61,53 +68,66 @@ namespace nettest
 
             if (RBMarca.Checked)
             {
-                foreach (DataGridViewRow row in DgvAutos.Rows)
+                try
                 {
-                    if (!row.Cells[1].Value.ToString().Contains(txtBMarca.Text))
+                    foreach (DataGridViewRow row in DgvAutos.Rows)
                     {
-                        row.Visible = false;
+                        if (!row.Cells[1].Value.ToString().Contains(txtBMarca.Text))
+                        {
+                            row.Visible = false;
+                        }
                     }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("No se encontraron coincidencias", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             if (RBModelo.Checked)
             {
-                foreach (DataGridViewRow row in DgvAutos.Rows)
+                try
                 {
-                    if (!row.Cells[2].Value.ToString().Contains(txtBModelo.Text))
+                    foreach (DataGridViewRow row in DgvAutos.Rows)
                     {
-                        row.Visible = false;
+                        if (!row.Cells[2].Value.ToString().Contains(txtBModelo.Text))
+                        {
+                            row.Visible = false;
+                        }
                     }
                 }
+                catch (Exception)
+                {
+                    MessageBox.Show("No se encontraron coincidencias", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
             }
             if (RBAnio.Checked)
             {
-                foreach (DataGridViewRow row in DgvAutos.Rows)
+                try
                 {
-                    if (!row.Cells[3].Value.ToString().Contains(txtBAnio.Text))
+                    foreach (DataGridViewRow row in DgvAutos.Rows)
                     {
-                        row.Visible = false;
+                        if (!row.Cells[3].Value.ToString().Contains(txtBAnio.Text))
+                        {
+                            row.Visible = false;
+                        }
                     }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("No se encontraron coincidencias", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
         
         
 
-        //funcion lambda boolean que retorna true si ya existe una patente en la lista con el mismo valor que el del textbox
+        //funcion lambda booleana con LINQ(Language Integrated Query) que retorna true si ya existe una patente en la lista con el mismo valor que el del textbox
         private bool ExistePatente()
         {
-            if (Auto.Exists(x => x.Patente == txtBPatente.Text))
-            {
-                MessageBox.Show("La patente ya existe",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            if (!Auto.Exists(x => x.Patente == txtBPatente.Text)) return false;
+            MessageBox.Show("La patente ya existe", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return true;
         }
 
         //funcion que rellena la lista con autos de prueba
@@ -137,6 +157,13 @@ namespace nettest
             ActualizarDgv();
             DgvAutos.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             btnModeloPruebas.Enabled = false;
+            //btnModeloPruebas.Visible = false;
+            //set the hoover property to show a message when the mouse is over the button
+            btnModeloPruebas.MouseHover += (sender, e) =>
+            {
+                ToolTip tt = new ToolTip();
+                tt.SetToolTip(btnModeloPruebas, "El modelo de pruebas solo puede ser ingresado una vez");
+            };
         }
 
         //Definimos una funcion para agregar autos a la lista
@@ -150,10 +177,7 @@ namespace nettest
                 Anio = Convert.ToInt32(txtBAnio.Text)
             });
             //Mensaje de confirmacion de agregado de autos
-            MessageBox.Show(txtBMarca.Text+" "+txtBModelo.Text+ " agregado correctamente",
-                "Operacion exitosa",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
+            MessageBox.Show(txtBMarca.Text+" "+txtBModelo.Text+ " agregado correctamente", "Operacion exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void LimpiarCampos()
@@ -166,36 +190,9 @@ namespace nettest
 
         private bool ValidarCampos()
         {
-            if (txtBPatente.Text == "" || txtBMarca.Text == "" || txtBModelo.Text == "" || txtBAnio.Text == "")
-            {
-                MessageBox.Show("Por favor complete todos los campos",
-                    "Advertencia",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-                return false;
-            }
-            if (txtBPatente.Text.Length != 6)
-            {
-                MessageBox.Show("La patente debe tener 6 caracteres",
-                    "Advertencia",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-                return false;
-            }
-            if (txtBAnio.Text.Length != 4)
-            {
-                MessageBox.Show("El año debe tener 4 digitos",
-                    "Advertencia",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-                return false;
-            }
-
-            if (!txtBAnio.Text.Any(char.IsLetter)) return true;
-            MessageBox.Show("El año debe ser un numero",
-                "Advertencia",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Warning);
+            //Validamos los campos con las expresiones regulares
+            if (_regexPatente.IsMatch(txtBPatente.Text) && _regexMarca.IsMatch(txtBMarca.Text) && _regexModelo.IsMatch(txtBModelo.Text) && _regexAnio.IsMatch(txtBAnio.Text)) return true;
+            MessageBox.Show("Por favor, ingrese los datos correctamente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return false;
         }
 
