@@ -124,7 +124,7 @@
             this.DgvAutos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgvAutos.Size = new System.Drawing.Size(500, 322);
             this.DgvAutos.TabIndex = 8;
-            this.DgvAutos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAutos_CellClick);
+            this.DgvAutos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvAutos_CellClick);
             // 
             // btAgregar
             // 
@@ -144,7 +144,7 @@
             this.btEliminar.TabIndex = 10;
             this.btEliminar.Text = "Eliminar";
             this.btEliminar.UseVisualStyleBackColor = true;
-            this.btEliminar.Click += new System.EventHandler(this.btEliminar_Click);
+            this.btEliminar.Click += new System.EventHandler(this.BtEliminar_Click);
             // 
             // LbAnio
             // 
@@ -170,7 +170,7 @@
             this.btnModeloPruebas.TabIndex = 13;
             this.btnModeloPruebas.Text = "Cargar modelo de pruebas";
             this.btnModeloPruebas.UseVisualStyleBackColor = true;
-            this.btnModeloPruebas.Click += new System.EventHandler(this.btnModeloPruebas_Click);
+            this.btnModeloPruebas.Click += new System.EventHandler(this.BtnModeloPruebas_Click);
             // 
             // BtnLimpiar
             // 

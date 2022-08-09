@@ -17,7 +17,7 @@ namespace nettest
         public List<Autos> Auto = new List<Autos>();
 
         //Creamos las expresiones regulares para validar los campos
-        private readonly Regex _regexPatente = new Regex(@"^[A-Z]{3}\d{3}$");
+        private readonly Regex _regexPatente = new Regex(@"^([A-Z]{3}\d{3})||([A-Z]{2}\d{3}[A-Z]{2})$ ");
         private readonly Regex _regexMarca = new Regex(@"^[A-Za-z]+$");
         private readonly Regex _regexModelo = new Regex(@"^[A-Za-z]+$");
         private readonly Regex _regexAnio = new Regex(@"^\d{4}$");
@@ -32,14 +32,11 @@ namespace nettest
         //Hace visibles todas las filas del DataGridView
         private void MostrarFilas()
         {
-            foreach (DataGridViewRow row in DgvAutos.Rows)
-            {
-                row.Visible = true;
-            }
+            foreach (DataGridViewRow row in DgvAutos.Rows) row.Visible = true;
         }
 
         //Oculta las filas que no cumplan con el criterio de busqueda utilizando una query Linq
-        private void FiltrarFilas()
+         private void FiltrarFilas()
         {
             switch (RBPatente.Checked)
             {
@@ -74,7 +71,6 @@ namespace nettest
                     break;
             }
         }
-
 
 
         //funcion lambda booleana que retorna true si ya existe una patente en la lista con el mismo valor que el del textbox
@@ -172,9 +168,9 @@ namespace nettest
         }
 
         //Click en una celda valida del DataGridView
-        private void dgvAutos_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void DgvAutos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //Obtenemos la fila seleccionada
+            //Validamos el indice de la fila seleccionada
             if (DgvAutos.CurrentRow == null) return;
             int n = DgvAutos.CurrentRow.Index;
             if (n == -1) return;
@@ -183,13 +179,12 @@ namespace nettest
             txtBMarca.Text = DgvAutos.Rows[n].Cells[1].Value.ToString();
             txtBModelo.Text = DgvAutos.Rows[n].Cells[2].Value.ToString();
             txtBAnio.Text = DgvAutos.Rows[n].Cells[3].Value.ToString();
-
         }
 
         //
-        private void btEliminar_Click(object sender, EventArgs e)
+        private void BtEliminar_Click(object sender, EventArgs e)
         {
-            if (DgvAutos.CurrentRow == null) return; 
+            if (DgvAutos.CurrentRow == null) return;
             int n = DgvAutos.CurrentRow.Index;
             if (n == -1) return;
             MessageBox.Show("¿Esta seguro que desea eliminar el auto " + DgvAutos.Rows[n].Cells[0].Value.ToString() + "?",
@@ -199,11 +194,10 @@ namespace nettest
             Auto.RemoveAt(n);
             ActualizarDgv();
             LimpiarCampos();
-
         }
 
 
-        private void btnModeloPruebas_Click(object sender, EventArgs e)
+        private void BtnModeloPruebas_Click(object sender, EventArgs e)
         {
             Rellenar();
         }
@@ -223,7 +217,7 @@ namespace nettest
             }
             catch (Exception)
             {
-                MessageBox.Show("No se encontraron coincidencias", "Error", 
+                MessageBox.Show("No se encontraron coincidencias", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 MostrarFilas();
             }
